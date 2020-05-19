@@ -305,7 +305,14 @@ bool contains(const string& haystack, const string& needle) {
 
 void adjustIdsForRemovalOf(Value::ValueIterator& itr, uint currentId,
                            std::map<uint, uint>& inputChanges, std::map<uint, uint>& newIds) {
-  CHECK((*itr)["inputs"].Size() == 1);
+  
+  
+  for(int i=0; i<(*itr)["inputs"].Size(); i++){
+    std::cout << (*itr)["inputs"][0][0].GetUint() << std::endl;
+  }
+
+  CHECK((*itr)["inputs"].Size() <= 2);
+
   uint input = (*itr)["inputs"][0][0].GetUint();
   while (inputChanges.count(input) > 0) {
     input = inputChanges[input];
